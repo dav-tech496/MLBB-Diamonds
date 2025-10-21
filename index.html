@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MLBB Diamonds — Resellers August</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- Preloader ---------- */
+    @keyframes square-animation {
+      0% { left: 0; top: 0; }
+      10.5% { left: 0; top: 0; }
+      12.5% { left: 32px; top: 0; }
+      23% { left: 32px; top: 0; }
+      25% { left: 64px; top: 0; }
+      35.5% { left: 64px; top: 0; }
+      37.5% { left: 64px; top: 32px; }
+      48% { left: 64px; top: 32px; }
+      50% { left: 32px; top: 32px; }
+      60.5% { left: 32px; top: 32px; }
+      62.5% { left: 32px; top: 64px; }
+      73% { left: 32px; top: 64px; }
+      75% { left: 0; top: 64px; }
+      85.5% { left: 0; top: 64px; }
+      87.5% { left: 0; top: 32px; }
+      98% { left: 0; top: 32px; }
+      100% { left: 0; top: 0; }
+    }
+    .loader {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      transform: rotate(45deg);
+      margin: 40vh auto;
+    }
+    .loader-square {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 28px;
+      height: 28px;
+      margin: 2px;
+      background: white;
+      animation: square-animation 3s ease-in-out infinite both;
+    }
+    .loader-square:nth-of-type(1) { animation-delay: 0s; }
+    .loader-square:nth-of-type(2) { animation-delay: -0.4286s; }
+    .loader-square:nth-of-type(3) { animation-delay: -0.8571s; }
+    .loader-square:nth-of-type(4) { animation-delay: -1.2857s; }
+    .loader-square:nth-of-type(5) { animation-delay: -1.7143s; }
+    .loader-square:nth-of-type(6) { animation-delay: -2.1429s; }
+    .loader-square:nth-of-type(7) { animation-delay: -2.5714s; }
+    /* ---------- Theme ---------- */
+    :root {
+      --bg: #0a0f25;
+      --accent: #4e8fff;
+      --accent-2: #f9c851;
+      --muted: #b9c8da;
+      --card: #121b33;
+      --glass: rgba(255,255,255,0.03);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #0b1020 0%, #0d1533 100%);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #f7fbff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 10px;
+      min-height: 100vh;
+    }
+    .wrapper {
+      width: 100%;
+      max-width: 950px;
+      background: linear-gradient(180deg, rgba(18,27,51,0.96), rgba(10,15,35,0.98));
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+      overflow: hidden;
+      padding: 26px;
+      position: relative;
+    }
+    .wave-decor {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(ellipse at 15% 10%, rgba(78,143,255,0.06) 0%, transparent 10%),
+                        radial-gradient(ellipse at 95% 80%, rgba(249,200,81,0.05) 0%, transparent 18%),
+                        linear-gradient(180deg, rgba(10,34,42,0.12), rgba(0,0,0,0) 40%);
+      mix-blend-mode: overlay;
+      z-index: 0;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      z-index: 2;
+      position: relative;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .pubg_img img {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #f9c851;
+      letter-spacing: 0.5px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    main {
+      margin-top: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      z-index: 2;
+      position: relative;
+    }
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(78,143,255,0.25);
+    }
+    .uc-qty {
+      font-weight: 700;
+      font-size: 17px;
+      color: #f9c851;
+    }
+    .uc-price {
+      color: #4e8fff;
+      font-weight: 800;
+      margin-top: 2px;
+      font-size: 17px;
+    }
+    .meta {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .contact-box {
+      padding: 16px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .contact-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #f9c851;
+    }
+    .contact-item {
+      background: var(--glass);
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.03);
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .telegram-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+      border-radius: 10px;
+      background: linear-gradient(90deg,#1f6fff,#f9c851);
+      border: none;
+      color: #fff;
+      font-weight: 800;
+      width: 100%;
+      margin-top: 12px;
+      cursor: pointer;
+      transition: opacity .2s ease;
+    }
+    .telegram-btn:hover { opacity: 0.9; }
+    footer {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloaderOverlay" style="position:fixed; inset:0; background: linear-gradient(180deg,#08142c 0%, #020817 70%); z-index:9999; display:flex; align-items:center; justify-content:center;">
+    <div style="text-align:center; color:#d7eaff;">
+      <div class="loader" aria-hidden="true">
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+        <div class="loader-square"></div>
+      </div>
+      <div style="margin-top:16px; font-weight:600;">Resellers August — Loading</div>
+    </div>
+  </div>
+  <div class="wrapper" role="main" aria-labelledby="pageTitle">
+    <div class="wave-decor" aria-hidden="true"></div>
+    <header>
+      <div class="brand">
+        <div class="pubg_img"><img src="./mlbb_logo.jpg" alt="MLBB logo"></div>
+        <div>
+          <h1 id="pageTitle">MLBB Diamonds — Resellers August</h1>
+          <div class="subtitle">Fast • Secure • Trusted reseller.</div>
+          <div class="subtitle">K Pay or Wave.</div>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div class="badge" id="timeBadge" style="background:linear-gradient(90deg,#133a7c,#f9c851);padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px;color:#fff;"></div>
+        <div style="font-size:12px;margin-top:4px;">Open: 10 AM – 10 PM<br>Price may change after 10PM</div>
+      </div>
+    </header>
+    <main>
+      <section aria-label="Weekly Pass">
+        <h2 style="margin:0 0 10px 0;">Weekly Pass</h2>
+        <div class="price-grid" id="weeklyGrid"></div>
+      </section>
+      <section aria-label="Diamond Packages">
+        <h2 style="margin:20px 0 10px 0;">Diamond Packages</h2>
+        <div class="price-grid" id="priceGrid">
+          <!-- <img src="./img/diamonds.jfif" alt="11 diamonds" style="width: 60px; height: 60px;">
+          <div class="uc-qty">11 Diamonds</div>
+          <div class="uc-price">850 MMK</div>
+          <div class="meta">Fast & Secure MLBB top-up</div> -->
+
+          <!-- <div class="card"><img src="./img/diamonds.jfif" alt="11 diamonds" style="width: 60px; height: 60px;">
+          <div class="uc-qty">11 Diamonds</div>
+          <div class="uc-price">850 MMK</div>
+          <div class="meta">Fast & Secure MLBB top-up</div></div>
+
+          <div class="card"><img src="./img/diamonds.jfif" alt="11 diamonds" style="width: 60px; height: 60px;">
+          <div class="uc-qty">22 Diamonds</div>
+          <div class="uc-price">1700 MMK</div>
+          <div class="meta">Fast & Secure MLBB top-up</div></div> -->
+        </div>
+      </section>
+      <section class="contact-box" aria-label="Contact and payments">
+        <div class="contact-title">Contact & Payments</div>
+        <div class="contact-item"><strong>K Pay</strong> 09450054309 (U Kyi Lwin)</div>
+        <div class="contact-item"><strong>Wave</strong> 09795633010 (Phyoe Theingi Khaing) — <em>+100MMK charge</em></div>
+        <div class="contact-item"><strong>Telegram</strong> <span id="tgLinkText">t.me/resellers_august</span></div>
+        <button class="telegram-btn" id="openTgBtn">Open Telegram Channel</button>
+      </section>
+    </main>
+    <footer>
+      <div>© <strong>Resellers August</strong> — Secure MLBB Delivery</div>
+    </footer>
+  </div>
+  <script>
+    const weekly = [
+      { qty: "Weekly Pass", price: "5,650 MMK", img: "./wp.jpg" }
+    ];
+    const diamonds = [
+      { qty: "11 Diamonds", price: "850 MMK"},
+      { qty: "22 Diamonds", price: "1,700 MMK"},
+      { qty: "33 Diamonds", price: "2,500 MMK"},
+      { qty: "44 Diamonds", price: "3,300 MMK"},
+      { qty: "56 Diamonds", price: "4,100 MMK"},
+      { qty: "112 Diamonds", price: "7,500 MMK"},
+      { qty: "50+ Diamonds", price: "350 MMK"},
+      { qty: "150+ Diamonds", price: "8,950 MMK"},
+      { qty: "250+ Diamonds", price: "14,400 MMK"},
+      { qty: "500+ Diamonds", price: "29,500 MMK"},
+      { qty: "86 Diamonds", price: "4,750 MMK"},
+      { qty: "172 Diamonds", price: "9,350 MMK"},
+      { qty: "257 Diamonds", price: "13,550 MMK"},
+      { qty: "279 Diamonds", price: "15,150 MMK"},
+      { qty: "343 Diamonds", price: "18,150 MMK"},
+      { qty: "429 Diamonds", price: "22,450 MMK"},
+      { qty: "514 Diamonds", price: "26,950 MMK"},
+      { qty: "600 Diamonds", price: "31,550 MMK"},
+      { qty: "706 Diamonds", price: "36,350 MMK"},
+      { qty: "792 Diamonds", price: "41,000 MMK"},
+      { qty: "1049 Diamonds", price: "54,500 MMK"},
+      { qty: "1135 Diamonds", price: "59,000 MMK"}
+    ];
+    const weeklyGrid = document.getElementById('weeklyGrid');
+    weekly.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.qty}" style="width:60px;height:60px;">
+        <div class="uc-qty">${p.qty}</div>
+        <div class="uc-price">${p.price}</div>
+        <div class="meta">Instant delivery — MLBB verified seller</div>
+      `;
+      card.addEventListener('click', () => {
+        const message = encodeURIComponent(`Hello Resellers August, I want to buy the ${p.qty} (${p.price}).`);
+        window.open(`https://t.me/resellers_august?text=${message}`, '_blank');
+      });
+      weeklyGrid.appendChild(card);
+    });
+    const priceGrid = document.getElementById('priceGrid');
+    diamonds.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="./img/diamonds.jfif" alt="${p.qty}" style="width:60px;height:60px;">
+        <div class="uc-qty">${p.qty}</div>
+        <div class="uc-price">${p.price}</div>
+        <div class="meta">Fast & secure MLBB top-up</div>
+      `;
+      card.addEventListener('click', () => {
+        const message = encodeURIComponent(`Hello Resellers August, I want to buy ${p.qty} (${p.price}). Please confirm payment details.`);
+        window.open(`https://t.me/resellers_august?text=${message}`, '_blank');
+      });
+      priceGrid.appendChild(card);
+    });
+    document.getElementById('openTgBtn').addEventListener('click', () => {
+      window.open('https://t.me/resellers_august', '_blank');
+    });
+    document.getElementById('tgLinkText').addEventListener('click', () => {
+      navigator.clipboard?.writeText('https://t.me/resellers_august').then(() => {
+        alert('Telegram link copied to clipboard');
+      }).catch(() => {
+        window.open('https://t.me/resellers_august','_blank');
+      });
+    });
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const pre = document.getElementById('preloaderOverlay');
+        if (pre) {
+          pre.style.transition = 'opacity .5s ease';
+          pre.style.opacity = 0;
+          setTimeout(() => pre.remove(), 600);
+        }
+      }, 650);
+    });
+  </script>
+</body>
+</html>
